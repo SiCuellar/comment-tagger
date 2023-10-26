@@ -42,7 +42,7 @@ describe('CommentListComponent', () => {
   it('should show "There are no comments to display" when there are no comments', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('div').textContent).toContain('There are no comments to display');
-    //use better tagging
+    //use better query selector tagging
   });
 
   // Add testing for comment count gaurd rails. Current funtionality does not exists. 
