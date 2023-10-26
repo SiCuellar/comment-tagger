@@ -75,4 +75,18 @@ export class NewCommentComponent {
   
     return mentionedUsers;
   }
+
+  activeUserIndex = 0;
+  onArrowKey(event: KeyboardEvent): void {
+    if (event.key === 'ArrowDown') {
+      this.activeUserIndex = (this.activeUserIndex + 1) % this.suggestedUsers.length;
+      event.preventDefault();
+    } else if (event.key === 'ArrowUp') {
+      this.activeUserIndex = (this.activeUserIndex - 1 + this.suggestedUsers.length) % this.suggestedUsers.length;
+      event.preventDefault();
+    } else if (event.key === 'Enter' && this.showUserSuggestions) {
+      this.onUserSuggestionClick(this.suggestedUsers[this.activeUserIndex].name);
+      event.preventDefault();
+    }
+  }
 }

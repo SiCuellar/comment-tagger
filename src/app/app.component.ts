@@ -22,7 +22,8 @@ export class AppComponent {
     new User(2, 'Jeff'),
     new User(3, 'Bryan'),
     new User(4, 'Gabbey'),
-    new User(5, 'Silver')
+    new User(5, 'Silver'),
+    new User(6, 'Sam')
   ];
 
   handleCommentAdded(newComment: Comment): void {

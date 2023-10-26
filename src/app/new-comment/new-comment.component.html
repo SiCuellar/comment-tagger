@@ -1,7 +1,13 @@
 <div class="new-comment">
-  <textarea [formControl]="newComment" placeholder="leave detailed comment...."></textarea>
+  <h3>New Comment</h3>
+  <textarea [formControl]="newComment" 
+            placeholder="leave detailed comment...." 
+            (keydown)="onArrowKey($event)"></textarea>
   <div class="user-suggestions" *ngIf="showUserSuggestions">
-    <div *ngFor="let user of suggestedUsers" (click)="onUserSuggestionClick(user.name)" class="user-suggestion">
+    <div *ngFor="let user of suggestedUsers; let i = index" 
+         (click)="onUserSuggestionClick(user.name)" 
+         class="user-suggestion" 
+         [class.active]="i === activeUserIndex">
       {{ user.name }}
     </div>
   </div>

@@ -1,0 +1,9 @@
+.user-suggestion {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.user-suggestion:hover,
+.user-suggestion.active {
+  background-color: #11f4dd;
+}
