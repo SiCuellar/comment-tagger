@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Comment } from 'src/shared/models/comment';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'comment-tagger';
+  comments : Comment[] =[
+    new Comment('Fix the jeep', 1),
+    new Comment('Do a good job on this app Silver!', 4),
+    new Comment('Learn Angular Fast', 3)
+  ]
+  
+
 }
