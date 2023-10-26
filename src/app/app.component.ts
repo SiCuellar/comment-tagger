@@ -54,4 +54,13 @@ export class AppComponent {
     this.newComment.setValue(words.join(' '));
     this.showUserSuggestions = false;
   }
+
+  addComment(): void {
+    const commentText = this.newComment.value.trim()
+    // Grab currentUser Id for session here
+    const authorUserId = 1; // hardcoding a user id 
+
+    this.comments.push(new Comment(commentText, authorUserId))
+    this.newComment.setValue('');
+  }
 }

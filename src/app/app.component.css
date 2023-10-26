@@ -1,0 +1,32 @@
+.app-container {
+  width: 50%;
+  margin: auto;
+}
+
+.comments-list {
+  margin-bottom: 20px;
+}
+
+.comment {
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.new-comment {
+  margin-bottom: 20px;
+}
+
+.user-suggestions {
+  border: 1px solid #ccc;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.user-suggestion {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.user-suggestion:hover {
+  background-color: #eee;
+}
