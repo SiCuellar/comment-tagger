@@ -49,7 +49,7 @@ export class AppComponent {
   }
 
   onUserSuggestionClick(userName: string): void {
-    const words = this.newComment.value.split(/\s+/);
+    const words = this.newComment.value.split(/\s+/); // Split by spaces including tabs unlike .split(" ") nice!
     words[words.length - 1] = `@${userName} `;
     this.newComment.setValue(words.join(' '));
     this.showUserSuggestions = false;
@@ -59,8 +59,28 @@ export class AppComponent {
     const commentText = this.newComment.value.trim()
     // Grab currentUser Id for session here
     const authorUserId = 1; // hardcoding a user id 
+    const mentions = this.extractMentions(commentText)
+    
+    this.comments.push(new Comment(commentText, authorUserId, mentions));
 
-    this.comments.push(new Comment(commentText, authorUserId))
     this.newComment.setValue('');
   }
+
+  extractMentions(text: string): User[] {
+    const words = text.split(/\s+/); // Split by spaces including tabs unlike .split(" ")
+    const mentionedUsers: User[] = [];
+  
+    words.forEach(word => {
+      if (word.startsWith('@')) {
+        const username = word.substring(1);
+        const user = this.users.find(u => u.name.toLowerCase() === username.toLowerCase());
+        if (user) {
+          mentionedUsers.push(user);
+        }
+      }
+    });
+  
+    return mentionedUsers;
+  }
+
 }
