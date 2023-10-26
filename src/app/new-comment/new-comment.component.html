@@ -1,0 +1,10 @@
+<div class="new-comment">
+  <textarea [formControl]="newComment" placeholder="leave detailed comment...."></textarea>
+  <div class="user-suggestions" *ngIf="showUserSuggestions">
+    <div *ngFor="let user of suggestedUsers" (click)="onUserSuggestionClick(user.name)" class="user-suggestion">
+      {{ user.name }}
+    </div>
+  </div>
+</div>
+
+<button (click)="addComment()">Post Comment</button>
