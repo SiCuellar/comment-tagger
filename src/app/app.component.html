@@ -1,7 +1,4 @@
-<div class="app-container">
-  <comment-list
-    [comments]="comments"
-  ></comment-list>
-  
-  <new-comment [users]="users" (commentAdded)="handleCommentAdded($event)"></new-comment>
-</div>
+
+<comment-list [comments]="comments"></comment-list>
+<new-comment [users]="users" (commentAdded)="handleCommentAdded($event)"></new-comment>
+
