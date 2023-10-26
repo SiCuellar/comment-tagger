@@ -47,4 +47,20 @@ fdescribe('NewCommentComponent', () => {
     }));
   });
 
+  it('should show user suggestions when "@" is typed', () => {
+    component.newComment.setValue('@Ka');
+    fixture.detectChanges();
+    expect(component.suggestedUsers.length).toBe(1);
+    expect(component.suggestedUsers[0].name).toBe('Kaladin');
+    expect(component.showUserSuggestions).toBeTrue();
+  });
+
+  it('should trigger an alert when a comment is added with a mention', () => {
+    const alertSpy = spyOn(window, 'alert');
+    component.newComment.setValue('@Kaladin you are stormblessed!');
+    component.addComment();
+    expect(alertSpy).toHaveBeenCalledWith('Hey Kaladin you have been pinged!!');
+  });
+  
+  // Add testing for keyboard arrow clicks
 });

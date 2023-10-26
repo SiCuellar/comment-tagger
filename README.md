@@ -1,27 +1,61 @@
-# CommentTagger
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.7.
+# 🚀 CommentTagger
 
-## Development server
+## 📜 Description
+CommentTagger is a user-friendly application designed to enhance community interactions through a dynamic commenting system.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🛠️ Setup & Installation
 
-## Code scaffolding
+### Prerequisites
+- Node.js
+- Angular CLI
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Installation Steps
+1. Clone the repository:
+   ```
+   git clone <your-repository-url>
+   ```
 
-## Build
+2. Navigate to the project directory:
+   ```
+   cd project-name
+   ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. Install the dependencies:
+   ```
+   npm install
+   ```
 
-## Running unit tests
+4. Start the development server:
+   ```
+   ng serve
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+5. Open your browser and navigate to `http://localhost:4200/`.
 
-## Running end-to-end tests
+## 🧪 Running the Tests
+To run the test sweet run the following command in the root for the directory. 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+ng test
+```
 
-## Further help
+## 🎨 Features
+List down all the main features of your application.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Intelligent user mention system (Similar to Slack) Begin typing a user’s name with an “@” symbol, and watch the list of existing Users show up.
+- Allows user to post a comment.
+
+
+## 🤝 Contributing
+Pull requests are welcome! You can see that I need to improve my Angular skills! 🤣
+
+Please make sure to update tests as appropriate.
+
+## 🔗 Links and Resources
+- [Angular Documentation](https://angular.io/docs)
+- [Node.js](https://nodejs.org/)
+
+
+![](https://media.giphy.com/media/scZPhLqaVOM1qG4lT9/giphy.gif)
+![](https://media.giphy.com/media/Dh5q0sShxgp13DwrvG/giphy.gif)
