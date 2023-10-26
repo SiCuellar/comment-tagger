@@ -3,6 +3,7 @@ import { Comment } from 'src/shared/models/comment';
 import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { User } from 'src/shared/models/user';
+import { CommentListComponent } from './comment-list/comment-list.component';
 
 @Component({
   selector: 'app-root',

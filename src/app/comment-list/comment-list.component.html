@@ -1,0 +1,16 @@
+
+<div *ngIf="comments.length === 0; else showComments">
+  There are no comments to display
+</div>
+
+
+<ng-template #showComments>
+  <div class="comments-list">
+    <ul>
+      <li *ngFor="let comment of comments" class="comment">
+        {{ comment.commentText }}
+      </li>
+    </ul>
+  </div>
+</ng-template>
+
