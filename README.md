@@ -1,6 +1,7 @@
 
 # 🚀 CommentTagger
-
+Deployed Using Firebase 🔥🌕
+⛓️ https://comment-tagger.web.app/
 ## 📜 Description
 CommentTagger is a user-friendly application designed to enhance community interactions through a dynamic commenting system.
 
