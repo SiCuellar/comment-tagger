@@ -64,6 +64,10 @@ export class AppComponent {
     this.comments.push(new Comment(commentText, authorUserId, mentions));
 
     this.newComment.setValue('');
+
+    mentions.forEach(user => {
+      alert(`Hey ${user.name} you have been pinged!!`)
+    })
   }
 
   extractMentions(text: string): User[] {
