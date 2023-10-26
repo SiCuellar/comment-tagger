@@ -7,10 +7,9 @@
 <ng-template #showComments>
   <div class="comments-list">
     <ul>
-      <li *ngFor="let comment of comments" class="comment">
-        {{ comment.commentText }}
+      <li *ngFor="let comment of comments">
+        <comment [comment]="comment"></comment>
       </li>
     </ul>
   </div>
 </ng-template>
-
