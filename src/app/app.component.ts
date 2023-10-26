@@ -18,7 +18,6 @@ export class AppComponent {
 
   newComment = new FormControl;
   showUserSuggestions = false;
-  // suggestedUsers = [];
   suggestedUsers: any[] = [];
   
   users: User[] = [
