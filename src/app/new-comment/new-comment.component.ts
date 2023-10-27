@@ -20,6 +20,7 @@ export class NewCommentComponent {
 
   constructor(private userMentionService: UserMentionService) {}
 
+  // this is not good practice, update this
   ngOnInit(): void {
     this.newComment.valueChanges.subscribe((value) => {
       this.onCommentInput(value || " ");
@@ -62,7 +63,7 @@ export class NewCommentComponent {
     this.newComment.setValue('');
   
     mentions.forEach((user: User) => {
-      alert(`Hey ${user.name}, you have been mentioned!`);
+      alert(`Hey ${user.name} you have been pinged!!`);
     });
   }
   
