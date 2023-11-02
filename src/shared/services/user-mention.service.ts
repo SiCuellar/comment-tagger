@@ -4,7 +4,6 @@ import { User } from 'src/shared/models/user';
 @Injectable({
   providedIn: 'root'
 })
-
 export class UserMentionService {
   private suggestedUsers: User[] = [];
   private activeUserIndex = 0;
@@ -37,8 +36,8 @@ export class UserMentionService {
     return mentionedUsers;
   }
 
-  getSuggestedUsers(users: User[], searchName: string): User[] {
-    return users.filter(user => user.name.toLowerCase().startsWith(searchName.toLowerCase()));
+  getSuggestedUsers(): User[] {
+    return this.suggestedUsers;
   }
 
   getActiveUserIndex(): number {
@@ -46,6 +45,8 @@ export class UserMentionService {
   }
 
   navigateUserSuggestions(event: KeyboardEvent): void {
+    if (this.suggestedUsers.length === 0) return;
+
     if (event.key === 'ArrowDown') {
       this.activeUserIndex = (this.activeUserIndex + 1) % this.suggestedUsers.length;
       event.preventDefault();
@@ -53,6 +54,10 @@ export class UserMentionService {
       this.activeUserIndex = (this.activeUserIndex - 1 + this.suggestedUsers.length) % this.suggestedUsers.length;
       event.preventDefault();
     }
+  }
+
+  shouldShowSuggestions(): boolean {
+    return this.suggestedUsers.length > 0;
   }
 
   resetUserMention(): void {

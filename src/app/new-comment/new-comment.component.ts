@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { User } from 'src/shared/models/user';
 import { Comment } from 'src/shared/models/comment';
 import { UserMentionService } from 'src/shared/services/user-mention.service';
@@ -9,39 +10,33 @@ import { UserMentionService } from 'src/shared/services/user-mention.service';
   templateUrl: './new-comment.component.html',
   styleUrls: ['./new-comment.component.css'],
 })
-export class NewCommentComponent {
+export class NewCommentComponent implements OnDestroy {
   @Input() users: User[] = [];
   @Output() commentAdded = new EventEmitter<Comment>();
 
   newComment = new FormControl('');
   showUserSuggestions = false;
-  suggestedUsers: User[] = [];
   activeUserIndex = 0;
+  subscription: Subscription;
+  suggestedUsers: User[] = [];
 
-  constructor(private userMentionService: UserMentionService) {}
-
-  // this is not good practice, update this
-  ngOnInit(): void {
-    this.newComment.valueChanges.subscribe((value) => {
+  constructor(private userMentionService: UserMentionService) {
+    this.subscription = this.newComment.valueChanges.subscribe((value) => {
       this.onCommentInput(value || " ");
     });
   }
 
-  onCommentInput(commentText: string): void {
-    const words = commentText.split(/\s+/);
-    const lastWord = words[words.length - 1];
-
-    if (lastWord.startsWith('@')) {
-      const searchName = lastWord.substring(1);
-      this.suggestedUsers = this.userMentionService.getSuggestedUsers(
-        this.users,
-        searchName
-      );
-      this.showUserSuggestions = this.suggestedUsers.length > 0;
-    } else {
-      this.showUserSuggestions = false;
-    }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
+
+  onCommentInput(commentText: string): void {
+    this.userMentionService.detectUserMention(this.users, commentText);
+    this.suggestedUsers = this.userMentionService.getSuggestedUsers();
+    this.showUserSuggestions = this.userMentionService.shouldShowSuggestions();
+    this.activeUserIndex = this.userMentionService.getActiveUserIndex();
+  }
+  
 
   onUserSuggestionClick(userName: string): void {
     const commentText = this.newComment.value ?? '';
@@ -53,9 +48,9 @@ export class NewCommentComponent {
   
   addComment(): void {
     const commentText = (this.newComment.value ?? '').trim();
-    if (!commentText) return; // Optionally, you can return early if the comment is empty.
+    if (!commentText) return;
   
-    const authorUserId = 1;
+    const authorUserId = 1; // Assuming a static user id for now
     const mentions = this.userMentionService.extractMentions(this.users, commentText);
     const newComment = new Comment(commentText, authorUserId, mentions);
   
@@ -68,16 +63,12 @@ export class NewCommentComponent {
   }
   
   onArrowKey(event: KeyboardEvent): void {
-    if (event.key === 'ArrowDown') {
-      this.activeUserIndex = (this.activeUserIndex + 1) % this.suggestedUsers.length;
-      event.preventDefault();
-    } else if (event.key === 'ArrowUp') {
-      this.activeUserIndex = (this.activeUserIndex - 1 + this.suggestedUsers.length) % this.suggestedUsers.length;
-      event.preventDefault();
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      this.userMentionService.navigateUserSuggestions(event);
+      this.activeUserIndex = this.userMentionService.getActiveUserIndex();
     } else if (event.key === 'Enter' && this.showUserSuggestions) {
       this.onUserSuggestionClick(this.suggestedUsers[this.activeUserIndex].name);
       event.preventDefault();
     }
   }
 }
-

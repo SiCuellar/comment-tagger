@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { User } from 'src/shared/models/user';
 
 
-fdescribe('NewCommentComponent', () => {
+describe('NewCommentComponent', () => {
   let component: NewCommentComponent;
   let fixture: ComponentFixture<NewCommentComponent>;
 

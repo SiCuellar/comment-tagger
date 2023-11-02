@@ -1,9 +1,36 @@
-.user-suggestion {
+.user-suggestions-container {
+  border: 1px solid #cbe4d2;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  width: calc(100% - 16px); /* Adjusted width to account for padding */
+  z-index: 1000;
+  background: white;
+  margin-top: 8px;
   padding: 8px;
+}
+
+.user-suggestions {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.user-suggestion {
+  padding: 8px 12px;
   cursor: pointer;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.user-suggestion:last-child {
+  border-bottom: none;
 }
 
 .user-suggestion:hover,
 .user-suggestion.active {
-  background-color: #11f4dd;
+  background-color: #edac43;
+  color: #09763e;
 }

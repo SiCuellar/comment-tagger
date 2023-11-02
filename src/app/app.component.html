@@ -1,5 +1,10 @@
-
-<comment-list [comments]="comments"></comment-list>
-<br>
-<new-comment [users]="users" (commentAdded)="handleCommentAdded($event)"></new-comment>
-
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="text-center mb-4">🎃Whisper Wall👻</h1>
+      <comment-list [comments]="comments"></comment-list>
+      <hr>
+      <new-comment [users]="users" (commentAdded)="handleCommentAdded($event)"></new-comment>
+    </div>
+  </div>
+</div>
